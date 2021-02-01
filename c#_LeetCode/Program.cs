@@ -1,5 +1,5 @@
 ﻿using System;
-using LeetCode.Array.Easy.ShuffleTheArray;
+using LeetCode.BST.Medium.TrimABinarySearchTree;
 
 namespace LeetCode
 {
@@ -7,7 +7,8 @@ namespace LeetCode
     {
         public static void Main(string[] args)
         {
-            var a = Solution.Shuffle(new []{ 1, 2, 3, 4, 11, 22, 33, 44 }, 4);
+            var a = Solution.TrimBST(
+                new TreeNode(2, new TreeNode(1), new TreeNode(3)), 1, 4);
 
             Console.WriteLine(a);
         }
