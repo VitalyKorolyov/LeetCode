@@ -1,5 +1,5 @@
 ﻿using System;
-using LeetCode.Array.Easy.RunningSumOf1dArray;
+using LeetCode.Array.Easy.ShuffleTheArray;
 
 namespace LeetCode
 {
@@ -7,7 +7,7 @@ namespace LeetCode
     {
         public static void Main(string[] args)
         {
-            var a = Solution.RunningSum(new []{ 1, 1, 1, 1, 1 });
+            var a = Solution.Shuffle(new []{ 1, 2, 3, 4, 11, 22, 33, 44 }, 4);
 
             Console.WriteLine(a);
         }
