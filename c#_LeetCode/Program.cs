@@ -1,5 +1,5 @@
 ﻿using System;
-using LeetCode.BST.Medium.TrimABinarySearchTree;
+using LeetCode.String.Medium.SortCharactersByFrequency;
 
 namespace LeetCode
 {
@@ -7,8 +7,7 @@ namespace LeetCode
     {
         public static void Main(string[] args)
         {
-            var a = Solution.TrimBST(
-                new TreeNode(2, new TreeNode(1), new TreeNode(3)), 1, 4);
+            var a = Solution.FrequencySort("cccaaa");
 
             Console.WriteLine(a);
         }
