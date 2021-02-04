@@ -1,5 +1,5 @@
 ﻿using System;
-using LeetCode.String.Medium.SortCharactersByFrequency;
+using LeetCode.Array.Easy.CountPrimes;
 
 namespace LeetCode
 {
@@ -7,7 +7,7 @@ namespace LeetCode
     {
         public static void Main(string[] args)
         {
-            var a = Solution.FrequencySort("cccaaa");
+            var a = Solution.CountPrimes(10);
 
             Console.WriteLine(a);
         }
