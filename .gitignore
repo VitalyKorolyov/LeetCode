@@ -33,3 +33,5 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 .dtbcache.v2
+*.testlog
+*.manifest
