@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Array\Easy\BestTimeToBuyAndSellStock\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
   </ItemGroup>
 
