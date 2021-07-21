@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="Array\Easy\BestTimeToBuyAndSellStock\" />
+    <Folder Include="Array\Easy\HowManyNumbersAreSmallerThanTheCurrentNumber\" />
     <Folder Include="Array\Easy\PascalsTriangle\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
   </ItemGroup>
