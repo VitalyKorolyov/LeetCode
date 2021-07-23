@@ -18,7 +18,7 @@ namespace LeetCode.Array.Medium._3Sum_Closest
                     {
                         var sum = nums[i] + nums[j] + nums[k];
 
-                        if (Math.Abs(target - sum) < Math.Abs(target - closestSum))
+                        if (System.Math.Abs(target - sum) < System.Math.Abs(target - closestSum))
                             closestSum = sum;
 
                         if (closestSum == target) return closestSum;
