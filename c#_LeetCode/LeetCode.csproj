@@ -11,6 +11,7 @@
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
     <Folder Include="Array\Easy\PascalsTriangle\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
+    <Folder Include="Graph\Easy\" />
   </ItemGroup>
 
 </Project>
