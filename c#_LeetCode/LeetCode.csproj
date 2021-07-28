@@ -13,6 +13,7 @@
     <Folder Include="Array\Easy\PascalsTriangle\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="Graph\Easy\" />
+    <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="String\Easy\ReverseString\" />
   </ItemGroup>
 
