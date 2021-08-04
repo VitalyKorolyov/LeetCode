@@ -11,6 +11,7 @@
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
     <Folder Include="Array\Easy\FlippingAnImage\" />
     <Folder Include="Array\Easy\PascalsTriangle\" />
+    <Folder Include="Array\Medium\FindTheDuplicateNumber\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="Graph\Easy\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
