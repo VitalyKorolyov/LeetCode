@@ -14,6 +14,7 @@
     <Folder Include="Array\Medium\FindTheDuplicateNumber\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="Graph\Easy\" />
+    <Folder Include="Math\Easy\HammingDistance\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="String\Easy\ReverseString\" />
   </ItemGroup>
