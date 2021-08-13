@@ -15,6 +15,7 @@
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="Graph\Easy\" />
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
+    <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
     <Folder Include="Math\Easy\HammingDistance\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="String\Easy\ReverseString\" />
