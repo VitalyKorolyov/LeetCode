@@ -1,5 +1,5 @@
-﻿using LeetCode.BST.Easy.AverageOfLevelsInBinaryTree;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using LeetCode.Trees.Easy.AverageOfLevelsInBinaryTree;
 using Xunit;
 
 namespace LeetCodeTests.BST.Easy.AverageOfLevelsInBinaryTree

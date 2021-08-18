@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.BST.Easy.AverageOfLevelsInBinaryTree
+namespace LeetCode.Trees.Easy.AverageOfLevelsInBinaryTree
 {
     //https://leetcode.com/problems/average-of-levels-in-binary-tree/
     public class TreeNode

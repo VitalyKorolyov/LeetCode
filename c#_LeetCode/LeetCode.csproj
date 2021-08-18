@@ -20,6 +20,7 @@
     <Folder Include="Math\Easy\HammingDistance\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="String\Easy\ReverseString\" />
+    <Folder Include="Trees\Easy\SameTree\" />
   </ItemGroup>
 
 </Project>
