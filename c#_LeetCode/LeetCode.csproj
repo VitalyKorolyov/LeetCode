@@ -22,6 +22,7 @@
     <Folder Include="Matrix\Medium\SpiralMatrix\" />
     <Folder Include="String\Easy\ReverseString\" />
     <Folder Include="Trees\Easy\InvertBinaryTree\" />
+    <Folder Include="Trees\Easy\BinaryTreeInorderTraversal\" />
     <Folder Include="Trees\Easy\SameTree\" />
   </ItemGroup>
 
