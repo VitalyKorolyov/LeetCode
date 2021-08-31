@@ -13,6 +13,7 @@
     <Folder Include="Array\Easy\FindSmallestLetterGreaterThanTarget\" />
     <Folder Include="Array\Easy\PascalsTriangle\" />
     <Folder Include="Array\Medium\FindTheDuplicateNumber\" />
+    <Folder Include="BST\Easy\MergeTwoBinaryTrees\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="Graph\Easy\" />
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
