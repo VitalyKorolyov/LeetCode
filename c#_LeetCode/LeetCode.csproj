@@ -11,6 +11,7 @@
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
     <Folder Include="Array\Easy\FlippingAnImage\" />
     <Folder Include="Array\Easy\FindSmallestLetterGreaterThanTarget\" />
+    <Folder Include="Array\Easy\SquaresOfASortedArray\" />
     <Folder Include="Array\Easy\PascalsTriangle\" />
     <Folder Include="Array\Medium\FindTheDuplicateNumber\" />
     <Folder Include="BST\Easy\MergeTwoBinaryTrees\" />
