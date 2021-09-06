@@ -26,6 +26,7 @@
     <Folder Include="Trees\Easy\InvertBinaryTree\" />
     <Folder Include="Trees\Easy\BinaryTreeInorderTraversal\" />
     <Folder Include="Trees\Easy\MinimumDepthOfBinaryTree\" />
+    <Folder Include="Trees\Easy\BinaryTreePreorderTraversal\" />
     <Folder Include="Trees\Easy\SubtreeOfAnotherTree\" />
     <Folder Include="Trees\Easy\SameTree\" />
   </ItemGroup>
