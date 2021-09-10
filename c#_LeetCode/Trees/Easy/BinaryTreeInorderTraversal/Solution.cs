@@ -29,6 +29,20 @@ namespace LeetCode.Trees.Easy.BinaryTreeInorderTraversal
             return result;
         }
 
+        //public IList<int> Stack(TreeNode root)
+        //{
+        //    var stack = new Stack<TreeNode>();
+        //    var res = new List<int>();
+
+        //    if (root == null) return res;
+
+        //    stack.Push(root);
+        //    while (stack.Count > 0)
+        //    {
+        //        stack.Push();
+        //    }
+        //}
+
         public static void Recursive(TreeNode root, List<int> result)
         {
             if (root == null) return;

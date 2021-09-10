@@ -22,11 +22,7 @@ namespace LeetCode.Trees.Easy.BinaryTreePreorderTraversal
     {
         public IList<int> PreorderTraversal(TreeNode root)
         {
-            var res = new List<int>();
-
-            Recursive(root, res);
-
-            return res;
+            return Stack(root);
         }
 
         public void Recursive(TreeNode root, List<int> res)
@@ -40,21 +36,25 @@ namespace LeetCode.Trees.Easy.BinaryTreePreorderTraversal
 
         public IList<int> Stack(TreeNode root)
         {
-            var stack = new Stack<TreeNode>();
             var output = new List<int>();
-
             if (root == null) return output;
 
-            stack.Push(root);
+            var stack = new Stack<TreeNode>();
+
+            var current = root;
             while (stack.Count > 0)
             {
-                var node = stack.Pop();
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
 
-                if (node == null) continue;
+                current = stack.Pop();
 
-                output.Add(node.val);
-                stack.Push(node.right);
-                stack.Push(node.left);
+                output.Add(current.val);
+
+                current = current.right;
             }
 
             return output;
