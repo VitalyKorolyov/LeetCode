@@ -22,6 +22,7 @@
     <Folder Include="Math\Easy\HammingDistance\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="Matrix\Medium\SpiralMatrix\" />
+    <Folder Include="String\Easy\SingleRowKeyboard\" />
     <Folder Include="String\Easy\ReverseString\" />
     <Folder Include="Trees\Easy\InvertBinaryTree\" />
     <Folder Include="Trees\Easy\BinaryTreeInorderTraversal\" />
