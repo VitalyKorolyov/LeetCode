@@ -14,6 +14,7 @@
     <Folder Include="Array\Easy\SquaresOfASortedArray\" />
     <Folder Include="Array\Easy\PascalsTriangle\" />
     <Folder Include="Array\Medium\FindTheDuplicateNumber\" />
+    <Folder Include="Array\Medium\MergeIntervals\" />
     <Folder Include="BST\Easy\MergeTwoBinaryTrees\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="Graph\Easy\" />
