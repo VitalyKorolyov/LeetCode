@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace LeetCode.Array.Easy.BestTimeToBuyAndSellStock
+namespace LeetCode.DynamicProgramming.Easy.BestTimeToBuyAndSellStock
 {
     //https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
     public static class Solution

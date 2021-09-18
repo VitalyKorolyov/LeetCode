@@ -1,4 +1,4 @@
-﻿using LeetCode.Array.Easy.BestTimeToBuyAndSellStock;
+﻿using LeetCode.DynamicProgramming.Easy.BestTimeToBuyAndSellStock;
 using Xunit;
 
 namespace LeetCodeTests.Array.Easy.BestTimeToBuyAndSellStock

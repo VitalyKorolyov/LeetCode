@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Array\Easy\BestTimeToBuyAndSellStock\" />
+    <Folder Include="DynamicProgramming\Easy\BestTimeToBuyAndSellStock\" />
     <Folder Include="Array\Easy\HowManyNumbersAreSmallerThanTheCurrentNumber\" />
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
     <Folder Include="Array\Easy\FlippingAnImage\" />
@@ -17,6 +17,7 @@
     <Folder Include="Array\Medium\MergeIntervals\" />
     <Folder Include="BST\Easy\MergeTwoBinaryTrees\" />
     <Folder Include="BST\Easy\SymmetricTree\" />
+    <Folder Include="DynamicProgramming\Easy\MaximumSubarray\" />
     <Folder Include="Graph\Easy\" />
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
     <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
