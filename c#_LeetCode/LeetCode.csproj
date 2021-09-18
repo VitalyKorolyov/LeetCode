@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Array\Easy\RangeSumQueryImmutable\" />
     <Folder Include="DynamicProgramming\Easy\BestTimeToBuyAndSellStock\" />
     <Folder Include="Array\Easy\HowManyNumbersAreSmallerThanTheCurrentNumber\" />
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
