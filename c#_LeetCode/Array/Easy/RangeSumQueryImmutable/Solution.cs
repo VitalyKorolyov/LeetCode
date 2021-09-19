@@ -8,36 +8,19 @@ namespace LeetCode.Array.Easy.RangeSumQueryImmutable
     {
         public class NumArray
         {
-            private readonly int[] _nums;
-            private readonly Dictionary<string, int> _cache = new();
+            private readonly int[] _sum;
 
             public NumArray(int[] nums)
             {
-                _nums = nums;
+                _sum = new int[nums.Length + 1];
+
+                for (var i = 0; i < nums.Length; i++)
+                    _sum[i + 1] = _sum[i] + nums[i];
             }
 
             public int SumRange(int left, int right)
             {
-                var key = $"{left}{right}";
-
-                if (_cache.ContainsKey(key))
-                {
-                    return _cache[key];
-                }
-
-                var res = Calc(left, right);
-                _cache.Add(key, res);
-                return res;
-            }
-
-            private int Calc(int left, int right)
-            {
-                var sum = 0;
-
-                for (int i = left; i <= right; i++)
-                    sum += _nums[i];
-
-                return sum;
+                return _sum[right + 1] - _sum[left];
             }
         }
     }
