@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <Folder Include="Array\Easy\RangeSumQueryImmutable\" />
+    <Folder Include="Array\Medium\MeetingRoomsII\" />
+    <Folder Include="Array\Medium\SubarraySumEqualsK\" />
     <Folder Include="DynamicProgramming\Easy\BestTimeToBuyAndSellStock\" />
     <Folder Include="Array\Easy\HowManyNumbersAreSmallerThanTheCurrentNumber\" />
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
