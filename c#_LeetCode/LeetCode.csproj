@@ -31,6 +31,7 @@
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="Matrix\Medium\SpiralMatrix\" />
     <Folder Include="String\Easy\MaximumNestingDepthOfTheParentheses\" />
+    <Folder Include="String\Easy\RobotReturnToOrigin\" />
     <Folder Include="String\Easy\RemoveAllAdjacentDuplicatesInString\" />
     <Folder Include="String\Easy\ValidParentheses\" />
     <Folder Include="String\Easy\SingleRowKeyboard\" />
