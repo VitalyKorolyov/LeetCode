@@ -10,6 +10,7 @@
     <Folder Include="Array\Medium\MeetingRoomsII\" />
     <Folder Include="Array\Medium\SubarraySumEqualsK\" />
     <Folder Include="BST\Medium\BinaryTreeRightSideView\" />
+    <Folder Include="BST\Medium\BinarySearchTreeToGreaterSumTree\" />
     <Folder Include="BST\Medium\PathSum II\" />
     <Folder Include="DynamicProgramming\Easy\BestTimeToBuyAndSellStock\" />
     <Folder Include="Array\Easy\HowManyNumbersAreSmallerThanTheCurrentNumber\" />
@@ -31,6 +32,7 @@
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="Matrix\Medium\SpiralMatrix\" />
     <Folder Include="String\Easy\MaximumNestingDepthOfTheParentheses\" />
+    <Folder Include="String\Easy\CountTheNumberOfConsistentStrings\" />
     <Folder Include="String\Easy\RobotReturnToOrigin\" />
     <Folder Include="String\Easy\RemoveAllAdjacentDuplicatesInString\" />
     <Folder Include="String\Easy\ValidParentheses\" />
