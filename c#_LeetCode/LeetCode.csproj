@@ -40,6 +40,7 @@
     <Folder Include="String\Easy\ReverseString\" />
     <Folder Include="String\Medium\MinimumRemoveToMakeValidParentheses\" />
     <Folder Include="String\Medium\LongestPalindromicSubstring\" />
+    <Folder Include="String\Medium\MinimumDeletionCostToAvoidRepeatingLetters\" />
     <Folder Include="Trees\Easy\InvertBinaryTree\" />
     <Folder Include="Trees\Easy\BinaryTreeInorderTraversal\" />
     <Folder Include="Trees\Easy\MinimumDepthOfBinaryTree\" />
