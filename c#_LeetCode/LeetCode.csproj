@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Array\Easy\FindPivotIndex\" />
     <Folder Include="Array\Easy\RangeSumQueryImmutable\" />
     <Folder Include="Array\Medium\MeetingRoomsII\" />
     <Folder Include="Array\Medium\SubarraySumEqualsK\" />
