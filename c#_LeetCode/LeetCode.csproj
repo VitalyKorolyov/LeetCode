@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Math\Easy\HammingDistance\**" />
+    <EmbeddedResource Remove="Math\Easy\HammingDistance\**" />
+    <None Remove="Math\Easy\HammingDistance\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Array\Easy\FindPivotIndex\" />
     <Folder Include="Array\Easy\RangeSumQueryImmutable\" />
     <Folder Include="Array\Medium\MeetingRoomsII\" />
@@ -30,9 +36,9 @@
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
     <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
     <Folder Include="LinkedList\Medium\PrintImmutableLinkedListInReverse\" />
-    <Folder Include="Math\Easy\HammingDistance\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="Matrix\Medium\SpiralMatrix\" />
+    <Folder Include="Matrix\Easy\" />
     <Folder Include="String\Easy\MaximumNestingDepthOfTheParentheses\" />
     <Folder Include="String\Easy\CountTheNumberOfConsistentStrings\" />
     <Folder Include="String\Easy\MaximumNumberOfBalloons\" />
