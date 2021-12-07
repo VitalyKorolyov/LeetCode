@@ -37,8 +37,6 @@
     <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
     <Folder Include="LinkedList\Medium\PrintImmutableLinkedListInReverse\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
-    <Folder Include="Matrix\Medium\SpiralMatrix\" />
-    <Folder Include="Matrix\Easy\" />
     <Folder Include="String\Easy\MaximumNestingDepthOfTheParentheses\" />
     <Folder Include="String\Easy\CountTheNumberOfConsistentStrings\" />
     <Folder Include="String\Easy\MaximumNumberOfBalloons\" />
