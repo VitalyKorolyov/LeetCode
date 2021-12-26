@@ -35,6 +35,7 @@
     <Folder Include="Graph\Easy\" />
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
     <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
+    <Folder Include="LinkedList\Hard\MergeKSortedLists\" />
     <Folder Include="LinkedList\Medium\PrintImmutableLinkedListInReverse\" />
     <Folder Include="Math\Easy\SelfDividingNumbers\" />
     <Folder Include="String\Easy\MaximumNestingDepthOfTheParentheses\" />
