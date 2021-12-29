@@ -33,6 +33,7 @@
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="DynamicProgramming\Easy\MaximumSubarray\" />
     <Folder Include="Graph\Easy\" />
+    <Folder Include="Queue\Medium\DesignHitCounter\" />
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
     <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
     <Folder Include="LinkedList\Hard\MergeKSortedLists\" />
