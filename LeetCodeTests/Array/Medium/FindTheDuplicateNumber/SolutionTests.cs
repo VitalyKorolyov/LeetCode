@@ -16,7 +16,7 @@ namespace LeetCodeTests.Array.Medium.FindTheDuplicateNumber
             var result = Solution.FindDuplicate(nums);
 
             // Assert
-            Assert.True(result == 1);
+            Assert.True(result == 4);
         }
     }
 }

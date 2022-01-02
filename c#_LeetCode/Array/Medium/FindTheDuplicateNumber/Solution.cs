@@ -11,14 +11,15 @@
             for (int i = 0; i < nums.Length; i++)
             {
                 var cur = nums[i];
+                var index = System.Math.Abs(cur) - 1;
 
-                if (nums[cur] < 0)
+                if (nums[index] < 0)
                 {
-                    dup = System.Math.Abs(nums[cur]);
+                    dup = System.Math.Abs(nums[index]);
                     break;
                 }
 
-                nums[cur] *= -1;
+                nums[index] *= -1;
             }
 
             for (int i = 0; i < nums.Length; i++)

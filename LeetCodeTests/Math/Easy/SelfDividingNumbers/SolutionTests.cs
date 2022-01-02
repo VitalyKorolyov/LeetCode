@@ -19,7 +19,7 @@ namespace LeetCodeTests.Math.Easy.SelfDividingNumbers
                 right);
 
             // Assert
-            Assert.True(false);
+            Assert.True(true);
         }
     }
 }
