@@ -1,5 +1,4 @@
 ﻿using LeetCode.Array.Medium.SumOfSubarrayMinimums;
-using System;
 using Xunit;
 
 namespace LeetCodeTests.Array.Medium.SumOfSubarrayMinimums
@@ -11,13 +10,13 @@ namespace LeetCodeTests.Array.Medium.SumOfSubarrayMinimums
         {
             // Arrange
             var solution = new Solution();
-            int[] arr = {11, 81, 94, 43, 3};
+            int[] arr = { 3, 1, 2, 4 };
 
             // Act
             var result = solution.SumSubarrayMins(arr);
 
             // Assert
-            Assert.Equal(444, result);
+            Assert.Equal(17, result);
         }
     }
 }
