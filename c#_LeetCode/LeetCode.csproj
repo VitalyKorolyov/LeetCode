@@ -15,6 +15,7 @@
     <Folder Include="Array\Easy\FindPivotIndex\" />
     <Folder Include="Array\Easy\RangeSumQueryImmutable\" />
     <Folder Include="Array\Medium\MeetingRoomsII\" />
+    <Folder Include="Array\Medium\SumOfSubarrayRanges\" />
     <Folder Include="Array\Medium\SubarraySumEqualsK\" />
     <Folder Include="BST\Medium\BinaryTreeRightSideView\" />
     <Folder Include="BST\Medium\BinarySearchTreeToGreaterSumTree\" />
