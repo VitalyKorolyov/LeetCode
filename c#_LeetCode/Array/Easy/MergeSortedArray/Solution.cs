@@ -3,16 +3,30 @@
     //https://leetcode.com/problems/merge-sorted-array/
     public class Solution
     {
-        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        public void Merge(int[] nums1, int m, int[] nums2, int n)
         {
-            for (int i = m + n - 1, indexOfNums1 = m - 1, indexOfNums2 = n - 1; i > -1; i--)
+            int nums1Index = m - 1;
+            int nums2Index = n - 1;
+            int i = n + m - 1;
+
+            for (; i >= 0 && nums1Index >= 0 && nums2Index >= 0; i--)
             {
-                if (indexOfNums1 < 0)
-                    nums1[i] = nums2[indexOfNums2--];
-                else if (indexOfNums2 < 0 || nums1[indexOfNums1] > nums2[indexOfNums2])
-                    nums1[i] = nums1[indexOfNums1--];
+                if(nums1[nums1Index] > nums2[nums2Index])
+                    nums1[i] = nums1[nums1Index--];
                 else
-                    nums1[i] = nums2[indexOfNums2--];
+                    nums1[i] = nums2[nums2Index--];
+            }
+
+            if (nums1Index >= 0)
+            {
+                for (; i >= 0 && nums1Index >= 0; i--)
+                    nums1[i] = nums1[nums1Index--];
+            }
+
+            if(nums2Index >= 0)
+            {
+                for (; i >= 0 && nums2Index >= 0; i--)
+                    nums1[i] = nums2[nums2Index--];
             }
         }
     }
