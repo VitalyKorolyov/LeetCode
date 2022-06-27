@@ -5,46 +5,24 @@
     {
         public static int[] SortedSquares(int[] nums)
         {
-            int k = 0;
-
-            for (k = 0; k < nums.Length; k++)
-            {
-                if (nums[k] >= 0) break;
-            }
-
             var res = new int[nums.Length];
 
-            int tempIndex = 0;
-            int i = k - 1;
-            int j = k;
-
-            while (i >= 0 && j <= nums.Length - 1)
+            var index = nums.Length - 1;
+            for (int i = 0, j = nums.Length - 1; index >= 0;)
             {
-                var r1 = nums[i] * nums[i];
-                var r2 = nums[j] * nums[j];
+                var square1 = nums[i] * nums[i];
+                var square2 = nums[j] * nums[j];
 
-                if (r1 < r2)
+                if (square1 > square2) 
                 {
-                    res[tempIndex++] = r1;
-                    i--;
+                    res[index--] = square1;
+                    i++;
                 }
                 else
                 {
-                    res[tempIndex++] = r2;
-                    j++;
+                    res[index--] = square2;
+                    j--;
                 }
-            }
-
-            while (i >= 0)
-            {
-                res[tempIndex++] = nums[i] * nums[i];
-                i--;
-            }
-
-            while (j <= nums.Length - 1)
-            {
-                res[tempIndex++] = nums[j] * nums[j];
-                j++;
             }
 
             return res;
