@@ -7,25 +7,21 @@ namespace LeetCode.String.Medium.LongestSubstringWithoutRepeatingCharacters
     {
         public int LengthOfLongestSubstring(string s)
         {
-            var length = s.Length;
-            var hash = new HashSet<char>(128);
+            var hash = new HashSet<char>();
 
-            int i = 0;
-            int j = 0;
+            int i = 0, j = 0, max = 0;
 
-            while (i < length && j < length)
+            while (i < s.Length && j < s.Length)
             {
                 if (!hash.Contains(s[j]))
-                {
                     hash.Add(s[j++]);
-                }
                 else
-                {
                     hash.Remove(s[i++]);
-                }
+
+                max = System.Math.Max(max, j - i);
             }
 
-            return hash.Count;
+            return max;
         }
     }
 }
