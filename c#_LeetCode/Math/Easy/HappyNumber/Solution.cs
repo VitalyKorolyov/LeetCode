@@ -7,24 +7,28 @@ namespace LeetCode.Math.Easy.HappyNumber
     {
         public bool IsHappy(int n)
         {
-            var hash = new HashSet<int>();
+            int slow = n, fast = n;
 
-            while (!hash.Contains(n))
+            do
             {
-                hash.Add(n);
+                slow = FindSquareSum(slow);
+                fast = FindSquareSum(FindSquareSum(fast));
+            } while (slow != fast);
 
-                var sum = 0;
-                while (n != 0)
-                {
-                    var value = n % 10;
-                    sum += value * value;
-                    n /= 10;
-                }
-                if (sum == 1) return true;
-                n = sum;
+            return slow == 1;
+        }
+
+        private static int FindSquareSum(int num)
+        {
+            int sum = 0;
+            while (num != 0)
+            {
+                var value = num % 10;
+                sum += value * value;
+                num /= 10;
             }
-
-            return false;
+            
+            return sum;
         }
     }
 }
