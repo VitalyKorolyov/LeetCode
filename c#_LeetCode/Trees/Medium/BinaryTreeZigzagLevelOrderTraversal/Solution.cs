@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeetCode.Trees.Medium.BinaryTreeZigzagLevelOrderTraversal
 {
@@ -24,39 +21,36 @@ namespace LeetCode.Trees.Medium.BinaryTreeZigzagLevelOrderTraversal
     {
         public IList<IList<int>> ZigzagLevelOrder(TreeNode root)
         {
-            var res = new Dictionary<int, IList<int>>();
-            if(root == null) return res.Values.ToList();
+            var res = new List<IList<int>>();
+            if (root == null) return res;
 
-            Dfs(root, res, 0);
+            var queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            bool leftToRight = true;
 
-            foreach(var (key, item) in res)
+            while(queue.Count > 0)
             {
-                if(key % 2 != 0) res[key] = res[key].Reverse().ToList();
+                var level = new LinkedList<int>();
+
+                var size = queue.Count;
+                for (int i = 0; i < size; i++)
+                {
+                    var node = queue.Dequeue();
+
+                    if (leftToRight)
+                        level.AddLast(node.val);
+                    else
+                        level.AddFirst(node.val);
+
+                    if (node.left != null) queue.Enqueue(node.left);
+                    if (node.right != null) queue.Enqueue(node.right);
+                }
+
+                leftToRight = !leftToRight;
+                res.Add(level.ToList());
             }
 
-            return res.Values.ToList();
-        }
-
-        private void Dfs(TreeNode node, Dictionary<int, IList<int>> res, int level)
-        {
-            if (node == null) return;
-
-            Add(res, node.val, level);
-
-            Dfs(node.left, res, level + 1);
-            Dfs(node.right, res, level + 1);
-        }
-
-        private void Add(Dictionary<int, IList<int>> res, int value, int level)
-        {
-            if (res.ContainsKey(level))
-            {
-                res[level].Add(value);
-            }
-            else
-            {
-                res.Add(level, new List<int> { value });
-            }
+            return res;
         }
     }
 }
