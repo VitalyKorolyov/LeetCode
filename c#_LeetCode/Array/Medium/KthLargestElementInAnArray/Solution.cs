@@ -8,19 +8,25 @@ namespace LeetCode.Array.Medium.KthLargestElementInAnArray
     {
         public int FindKthLargest(int[] nums, int k)
         {
-            var list = new PriorityQueue<int, int>();
+            var queue = new PriorityQueue<int, int>(new Comp());
 
-            for (int i = 0; i < nums.Length; i++)
+            foreach (var item in nums)
             {
-                list.Enqueue(nums[i], nums[i]);
+                queue.Enqueue(item, item);
+
+                if (queue.Count > k)
+                    queue.Dequeue();
             }
 
-            for (int i = 0; i < nums.Length - k; i++)
-            {
-                list.Dequeue();
-            }
+            return queue.Dequeue();  
+        }
 
-            return list.Dequeue();  
+        public class Comp : IComparer<int>
+        {
+            public int Compare(int x, int y)
+            {
+                return x - y;
+            }
         }
     }
 }
