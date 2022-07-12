@@ -21,60 +21,51 @@ namespace LeetCode.BST.Medium.BinaryTreeRightSideView
     {
         public IList<int> RightSideView(TreeNode root)
         {
-            var res = new List<int>();
-            if (root == null) return res;
+            List<int> res = new();
+            if(root == null) return res;
 
-            var queue = new Queue<TreeNode>();
+            Queue<TreeNode> queue = new();
             queue.Enqueue(root);
-            queue.Enqueue(null);
 
-            TreeNode prev, curr = root;
-            while (queue.Count != 0)
+            while (queue.Count > 0)
             {
-                prev = curr;
-                curr = queue.Dequeue();
+                var size = queue.Count;
 
-                while (curr != null)
+                for (int i = 0; i < size; i++)
                 {
-                    if (curr.left != null)
-                    {
-                        queue.Enqueue(curr.left);
-                    }
-                    if (curr.right != null)
-                    {
-                        queue.Enqueue(curr.right);
-                    }
+                    var node = queue.Dequeue();
 
-                    prev = curr;
-                    curr = queue.Dequeue();
+                    if (i == size - 1)
+                        res.Add(node.val);
+
+                    if (node.left != null)
+                        queue.Enqueue(node.left);
+                    if (node.right != null)
+                        queue.Enqueue(node.right);
                 }
-
-                res.Add(prev.val);
-
-                if (queue.Count != 0)
-                    queue.Enqueue(null);
             }
-            return res;
-        }
-
-        public IList<int> DFS(TreeNode root)
-        {
-            var res = new List<int>();
-
-            Right(root, res, 0);
 
             return res;
         }
 
-        public void Right(TreeNode root, IList<int> res, int level)
-        {
-            if(root == null) return;
+        //public IList<int> DFS(TreeNode root)
+        //{
+        //    var res = new List<int>();
 
-            if(level == res.Count)
-                res.Add(root.val);
+        //    Right(root, res, 0);
 
-            Right(root.right, res, level + 1);
-            Right(root.left, res, level + 1);
-        }
+        //    return res;
+        //}
+
+        //public void Right(TreeNode root, IList<int> res, int level)
+        //{
+        //    if(root == null) return;
+
+        //    if(level == res.Count)
+        //        res.Add(root.val);
+
+        //    Right(root.right, res, level + 1);
+        //    Right(root.left, res, level + 1);
+        //}
     }
 }
