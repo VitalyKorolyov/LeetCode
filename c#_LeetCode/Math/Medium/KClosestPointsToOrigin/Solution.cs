@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace LeetCode.Math.Medium.KClosestPointsToOrigin
 {
@@ -8,39 +7,29 @@ namespace LeetCode.Math.Medium.KClosestPointsToOrigin
     {
         public int[][] KClosest(int[][] points, int k)
         {
-            var sortedList = new SortedList<double, List<int[]>>();
+            var queue = new PriorityQueue<int[], double>(new Comp());
             for (var i = 0; i < points.Length; i++)
             {
-                var distance = System.Math.Sqrt(System.Math.Pow(points[i][0] - 0, 2) + System.Math.Pow(points[i][1] - 0, 2)); ;
-                if (sortedList.ContainsKey(distance))
-                {
-                    sortedList[distance].Add(points[i]);
-                }
-                else
-                {
-                    sortedList.Add(distance, new List<int[]> { points[i] });
-                }
+                var distance = System.Math.Sqrt(System.Math.Pow(points[i][0] - 0, 2) + System.Math.Pow(points[i][1] - 0, 2));
+
+                queue.Enqueue(points[i], distance);
+                if(queue.Count > k)
+                    queue.Dequeue();
             }
 
             var result = new int[k][];
-            var sortedValues = sortedList.Values;
             for (int i = 0; i < k; i++)
-            {
-                if (sortedValues[i].Count == 1)
-                {
-                    result[i] = sortedValues[i][0];
-                }
-                else
-                {
-                    foreach (var p in sortedValues[i])
-                    {
-                        result[i] = p;
-                        i++;
-                    }
-                }
-            }
+                result[i] = queue.Dequeue();
 
             return result;
+        }
+
+        public class Comp : IComparer<double>
+        {
+            public int Compare(double x, double y)
+            {
+                return y.CompareTo(x);
+            }
         }
     }
 }
