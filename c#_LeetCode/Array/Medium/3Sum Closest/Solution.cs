@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeetCode.Array.Medium._3Sum_Closest
+﻿namespace LeetCode.Array.Medium._3Sum_Closest
 {
     //https://leetcode.com/problems/3sum-closest
     //O(n^3), can be improved to O(n^2)
@@ -8,25 +6,29 @@ namespace LeetCode.Array.Medium._3Sum_Closest
     {
         public static int ThreeSumClosest(int[] nums, int target)
         {
-            var closestSum = nums[0] + nums[1] + nums[2];
+            System.Array.Sort(nums);
 
-            for (var i = 0; i < nums.Length; i++)
+            var smalestDiff = int.MaxValue;
+
+            for (int left = 0; left < nums.Length; left++)
             {
-                for (var j = i + 1; j < nums.Length; j++)
+                var right = nums.Length - 1;
+                var middle = left + 1;
+
+                while (right > middle)
                 {
-                    for (var k = j + 1; k < nums.Length; k++)
-                    {
-                        var sum = nums[i] + nums[j] + nums[k];
+                    var sum = nums[left] + nums[middle] + nums[right];
 
-                        if (System.Math.Abs(target - sum) < System.Math.Abs(target - closestSum))
-                            closestSum = sum;
-
-                        if (closestSum == target) return closestSum;
-                    }
+                    if (System.Math.Abs(target - sum) < System.Math.Abs(smalestDiff))
+                        smalestDiff = target - sum;
+                    if (sum < target)
+                        middle++;
+                    else
+                        right--;
                 }
             }
 
-            return closestSum;
+            return target - smalestDiff;
         }
     }
 }

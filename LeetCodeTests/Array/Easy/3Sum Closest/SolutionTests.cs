@@ -9,8 +9,8 @@ namespace LeetCodeTests.Array.Easy._3Sum_Closest
         [Fact]
         public void Test()
         {
-            var result = Solution.ThreeSumClosest(new[] { -1, 2, 1, -4 }, 1);
-            Assert.Equal(2, result);
+            var result = Solution.ThreeSumClosest(new[] { 4, 0, 5, -5, 3, 3, 0, -4, -5 }, 3);
+            Assert.Equal(-2, result);
 
             result = Solution.ThreeSumClosest(new[] { 3, 2, 1 }, 1);
             Assert.Equal(6, result);
