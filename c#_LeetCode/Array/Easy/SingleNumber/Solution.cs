@@ -8,21 +8,32 @@ namespace LeetCode.Array.Easy.SingleNumber
     {
         public int SingleNumber(int[] nums)
         {
-            var singleStore = new HashSet<int>();
-
-            foreach (var num in nums)
+            int num = 0;
+            for (int i = 0; i < nums.Length; i++)
             {
-                if (!singleStore.Contains(num))
-                {
-                    singleStore.Add(num);
-                }
-                else
-                {
-                    singleStore.Remove(num);
-                }
+                num = num ^ nums[i];
             }
 
-            return singleStore.First();
+            return num;
         }
+
+        //public int SingleNumber(int[] nums)
+        //{
+        //    var singleStore = new HashSet<int>();
+
+        //    foreach (var num in nums)
+        //    {
+        //        if (!singleStore.Contains(num))
+        //        {
+        //            singleStore.Add(num);
+        //        }
+        //        else
+        //        {
+        //            singleStore.Remove(num);
+        //        }
+        //    }
+
+        //    return singleStore.First();
+        //}
     }
 }
