@@ -5,13 +5,30 @@
     {
         public static int MissingNumber(int[] nums)
         {
-            var expectedSum = nums.Length * (nums.Length + 1) / 2;
+            int n = nums.Length + 1;
 
-            var currentSum = 0;
-            for (int i = 0; i < nums.Length; i++)
-                currentSum += nums[i];
+            int x1 = 1;
+            for (int i = 2; i <= n; i++)
+                x1 = x1 ^ i;
 
-            return expectedSum - currentSum;
+            int x2 = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+                x2 = x2 ^ nums[i];
+
+            var res = x1 ^ x2;
+
+            return res;
         }
+
+        //public static int MissingNumber(int[] nums)
+        //{
+        //    var expectedSum = nums.Length * (nums.Length + 1) / 2;
+
+        //    var currentSum = 0;
+        //    for (int i = 0; i < nums.Length; i++)
+        //        currentSum += nums[i];
+
+        //    return expectedSum - currentSum;
+        //}
     }
 }
