@@ -7,28 +7,37 @@ namespace LeetCode.String.Easy.ReverseWordsInAStringIII
     {
         public static string ReverseWords(string s)
         {
-            var rSpaceIndex = 0;
-            var res = new StringBuilder(s.Length);
+            var str = s.ToCharArray();
 
-            for (var i = 0; i < s.Length; i++)
+            Reverse(str);
+
+            return new string(str);
+        }
+
+        private static void Reverse(char[] str)
+        {
+            var left = 0;
+
+            for (int right = 0; right < str.Length; right++)
             {
-                if (s[i] == ' ' || s.Length - 1 == i)
+                if(str[right] == ' ')
                 {
-                    var lSpaceIndex = rSpaceIndex;
-                    rSpaceIndex = i;
-
-                    for (int j = rSpaceIndex; j >= lSpaceIndex; j--)
-                    {
-                        if(s[j] == ' ') continue;
-
-                        res.Append(s[j]);
-                    }
-
-                    if (s.Length - 1 != i) res.Append(' ');
+                    ReverseWord(str, left, right);
+                    left = right + 1;
                 }
             }
 
-            return res.ToString();
+            ReverseWord(str, left, str.Length - 1);
         }
+
+        private static void ReverseWord(char[] str, int left, int right)
+        {
+            while(left < right)
+            {
+                var temp = str[left];
+                str[left++] = str[right];
+                str[right--] = temp;
+            }
+        } 
     }
 }
