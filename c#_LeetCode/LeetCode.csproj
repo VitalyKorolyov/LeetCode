@@ -17,10 +17,12 @@
     <Folder Include="Array\Medium\MeetingRoomsII\" />
     <Folder Include="Array\Medium\SumOfSubarrayRanges\" />
     <Folder Include="Array\Medium\SubarraySumEqualsK\" />
+    <Folder Include="Bit\Easy\ComplementOfBase10Integer\" />
     <Folder Include="BST\Medium\BinaryTreeRightSideView\" />
     <Folder Include="BST\Medium\BinarySearchTreeToGreaterSumTree\" />
     <Folder Include="BST\Medium\DeepestLeavesSum\" />
     <Folder Include="BST\Medium\PathSum II\" />
+    <Folder Include="Design\Medium\ShortestWordDistanceII\" />
     <Folder Include="DynamicProgramming\Easy\BestTimeToBuyAndSellStock\" />
     <Folder Include="Array\Easy\HowManyNumbersAreSmallerThanTheCurrentNumber\" />
     <Folder Include="Array\Easy\GoalParserInterpretation\" />
@@ -34,6 +36,8 @@
     <Folder Include="BST\Easy\SymmetricTree\" />
     <Folder Include="DynamicProgramming\Easy\MaximumSubarray\" />
     <Folder Include="Graph\Easy\" />
+    <Folder Include="PriorityQueue\Hard\SlidingWindowMedian\" />
+    <Folder Include="PriorityQueue\Medium\SellDiminishingValuedColoredBalls\" />
     <Folder Include="Queue\Medium\DesignHitCounter\" />
     <Folder Include="LinkedList\Easy\MergeTwoSortedLists\" />
     <Folder Include="LinkedList\Easy\DeleteNodeInALinkedList\" />
