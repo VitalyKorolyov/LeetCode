@@ -1,5 +1,4 @@
 ﻿using LeetCode.String.Medium.DecodeString;
-using System;
 using Xunit;
 
 namespace LeetCodeTests.String.Medium.DecodeString
@@ -11,14 +10,13 @@ namespace LeetCodeTests.String.Medium.DecodeString
         {
             // Arrange
             var solution = new Solution();
-            string s = "3[a]2[bc]";
+            string s = "3[a2[bx]]";
 
             // Act
-            var result = solution.DecodeString(
-                s);
+            var result = solution.DecodeString(s);
 
             // Assert
-            Assert.Equal("zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef", result);
+            Assert.Equal("abxbxabxbxabxbx", result);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCode.String.Medium.DecodeString
@@ -6,71 +7,41 @@ namespace LeetCode.String.Medium.DecodeString
     //https://leetcode.com/problems/decode-string/
     public class Solution
     {
-        private HashSet<char> numbers = new HashSet<char>{
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9'};
-
         public string DecodeString(string s)
         {
-            var res = Dec(s, 0, 1);
+            Queue<char> queue = new(s.ToCharArray());
 
-            return res.Item1.ToString();
+            return Helper(queue).ToString();
         }
 
-        private (StringBuilder, int) Dec(string s, int index, int repeat)
+        public StringBuilder Helper(Queue<char> queue)
         {
-            var res = new StringBuilder();
+            int num = 0;
+            StringBuilder sb = new();
 
-            for (int i = index; i < s.Length; i++)
+            while (queue.Count != 0)
             {
-                if (s[i] == ']')
+                char curr = queue.Dequeue();
+
+                if (char.IsDigit(curr))
                 {
-                    index = i;
-                    break;
+                    num = 10 * num + int.Parse(curr.ToString());
+                    continue;
                 }
 
-                if (numbers.Contains(s[i]))
+                if (curr == '[')
                 {
-                    var (newRepeat, length) = GetRepeat(s, i);
-                    i += length + 1;
-                    var (dec, lastIndex) = Dec(s, i, newRepeat);
-                    res.Append(dec);
-                    i = lastIndex;
+                    var temp = Helper(queue);
+                    sb.Append(string.Join("", Enumerable.Repeat(temp, num)));
+                    num = 0;
+                    continue;
                 }
-                else
-                    res.Append(s[i]);
+
+                if (curr == ']') return sb;
+                if (char.IsLetter(curr)) sb.Append(curr);
             }
 
-            var temp = res.ToString();
-            for (int j = 1; j < repeat; j++)
-            {
-                res.Append(temp);
-            }
-
-            return (res, index);
-        }
-
-        private (int, int) GetRepeat(string s, int index)
-        {
-            var start = index;
-            var length = 1;
-
-            for (int i = index + 1; index < s.Length || i <= index + 3; i++)
-            {
-                if (!numbers.Contains(s[i])) break;
-
-                length++;
-            }
-
-            return (int.Parse(s.Substring(start, length)), length);
+            return sb;
         }
     }
 }
