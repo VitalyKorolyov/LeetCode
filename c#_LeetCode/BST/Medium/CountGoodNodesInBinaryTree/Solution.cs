@@ -17,23 +17,19 @@
 
     public class Solution
     {
-        private int counter = 0;
         public int GoodNodes(TreeNode root)
         {
-            Count(root, root.val);
-            return counter;
+            return Count(root, root.val);
         }
 
-        private void Count(TreeNode root, int prevValue)
+        private int Count(TreeNode root, int prevValue)
         {
-            if (root == null) return;
-            if (root.val >= prevValue)
-            {
-                counter++;
-            }
+            if (root == null) return 0;
 
-            Count(root.left, System.Math.Max(root.val, prevValue));
-            Count(root.right, System.Math.Max(root.val, prevValue));
+            var counter = root.val >= prevValue ? 1 : 0; 
+
+            return counter + Count(root.left, System.Math.Max(root.val, prevValue)) 
+                + Count(root.right, System.Math.Max(root.val, prevValue));
         }
     }
 }
