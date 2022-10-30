@@ -1,81 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LeetCode.Stack.Medium.BasicCalculatorII
 {
+    //https://leetcode.com/problems/basic-calculator-ii/
     public class Solution
     {
         public int Calculate(string s)
         {
-            var stack = new Stack<int>();
-            int number = 0;
-
-            for (int i = 0; i < s.Length; i++)
+            Queue<char> queue = new(s.Length);
+            foreach(char c in s)
             {
-                if (char.IsDigit(s[i]))
+                if (c == ' ') continue;
+                queue.Enqueue(c);
+            }
+
+            return Calc(queue);
+        }
+
+        private int Calc(Queue<char> queue)
+        {
+            Stack<int> stack = new();
+
+            while(queue.Count > 0)
+            {
+                var item = queue.Peek();
+                if(char.IsDigit(item))
                 {
-                    (number, i) = GetNumber(s, i);
+                    var number = GetNumber(queue);
                     stack.Push(number);
-
                     continue;
                 }
 
-                if (s[i] == '*')
-                {
-                    (number, i) = GetNumber(s, ++i);
-                    var prev = stack.Pop();
-                    stack.Push(prev * number);
+                queue.Dequeue();
 
-                    continue;
+                if (item == '-' || item == '+')
+                {
+                    var number = GetNumber(queue);
+                    stack.Push(item == '-' ? -number : number);
                 }
-                if (s[i] == '/')
-                {
-                    (number, i) = GetNumber(s, ++i);
-                    var prev = stack.Pop();
-                    stack.Push(prev / number);
 
-                    continue;
-                }
-                if (s[i] == '+')
+                if(item == '*' || item == '/')
                 {
-                    (number, i) = GetNumber(s, ++i);
-                    stack.Push(number);
-
-                    continue;
-                }
-                if (s[i] == '-')
-                {
-                    (number, i) = GetNumber(s, ++i);
-                    stack.Push(-number);
-
-                    continue;
+                    var first = stack.Pop();
+                    var second = GetNumber(queue);
+                    stack.Push(item == '*' ? first * second : first / second);
                 }
             }
 
-            var res = 0;
+            int res = 0;
             while(stack.Count > 0)
-            {
                 res += stack.Pop();
-            }
 
             return res;
         }
 
-        private Tuple<int, int> GetNumber(string s, int i)
+        private int GetNumber(Queue<char> queue)
         {
-            var res = new StringBuilder();
-
-            if (i < s.Length && s[i] == ' ')
+            var number = 0;
+            while(queue.Count > 0)
             {
-                while (s[i] == ' ')
-                    i++;
+                if (char.IsDigit(queue.Peek()))
+                    number = 10 * number + queue.Dequeue() - '0';
+                else break;
             }
 
-            while (i < s.Length && char.IsDigit(s[i]))
-                res.Append(s[i++]);
-
-            return Tuple.Create(int.Parse(res.ToString()), --i);
+            return number;
         }
     }
 }
