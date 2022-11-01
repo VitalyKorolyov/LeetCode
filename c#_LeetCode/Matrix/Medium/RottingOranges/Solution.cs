@@ -1,64 +1,73 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCode.Matrix.Medium.RottingOranges
 {
     //https://leetcode.com/problems/rotting-oranges/
     public class Solution
     {
+        private int[][] directions = new int[][]
+        {
+            new int[]{1, 0}, new int[]{-1, 0}, new int[]{0, 1}, new int[]{0, -1}
+        };
+
         public int OrangesRotting(int[][] grid)
         {
-            if (grid == null || grid.Length == 0) return 0;
-
-            int rows = grid.Length;
-            int cols = grid[0].Length;
-            Queue<int[]> queue = new();
-            int count_fresh = 0;
-
-            //Put the position of all rotten oranges in queue
-            //count the number of fresh oranges
-            for (int i = 0; i < rows; i++)
+            Queue<Tuple<int, int>> queue = new();
+            int freshOranges = 0;
+            for (int i = 0; i < grid.Length; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < grid[i].Length; j++)
                 {
+                    if(grid[i][j] == 1)
+                        freshOranges++;
                     if (grid[i][j] == 2)
-                        queue.Enqueue(new int[] { i, j });
-                    else if (grid[i][j] == 1)
-                        count_fresh++;
+                        queue.Enqueue(Tuple.Create(i, j));
                 }
             }
 
-            //if count of fresh oranges is zero --> return 0 
-            if (count_fresh == 0) return 0;
-            int count = 0;
-            int[][] dirs = { new[] { 1, 0 }, new[] { -1, 0 }, new[] { 0, 1 }, new[] { 0, -1 } };
-            //bfs starting from initially rotten oranges
-            while (queue.Count != 0)
+            if (queue.Count == 0 && freshOranges > 0) return -1;
+            if (queue.Count == 0 && freshOranges == 0) return 0;
+
+            Dictionary<int, HashSet<int>> visited = new();
+            var time = 0;
+
+            while (queue.Count > 0)
             {
-                ++count;
-                int size = queue.Count;
-                for (int i = 0; i < size; i++)
+                time += 1;
+
+                var node = queue.Dequeue();
+                AddVisited(visited, node.Item1, node.Item2);
+
+                for (int j = 0; j < directions.Length; j++)
                 {
-                    int[] point = queue.Dequeue();
-                    foreach (var dir in dirs)
+                    var newX = directions[j][0] + node.Item1;
+                    var newY = directions[j][1] + node.Item2;
+
+                    if (newX >= 0 && newX < grid.Length && newY >= 0 && newY < grid[newX].Length &&
+                        grid[newX][newY] == 1 && !IsVisited(visited, newX, newY))
                     {
-                        int x = point[0] + dir[0];
-                        int y = point[1] + dir[1];
-                        //if x or y is out of bound
-                        //or the orange at (x , y) is already rotten
-                        //or the cell at (x , y) is empty
-                        //we do nothing
-                        if (x < 0 || y < 0 || x >= rows || y >= cols || grid[x][y] == 0 || grid[x][y] == 2) 
-                            continue;
-                        //mark the orange at (x , y) as rotten
-                        grid[x][y] = 2;
-                        //put the new rotten orange at (x , y) in queue
-                        queue.Enqueue(new int[] { x, y });
-                        //decrease the count of fresh oranges by 1
-                        count_fresh--;
+                        freshOranges--;
+                        AddVisited(visited, newX, newY);
+                        queue.Enqueue(Tuple.Create(newX, newY));
                     }
                 }
             }
-            return count_fresh == 0 ? count - 1 : -1;
+
+            return freshOranges == 0 ? time - 1 : -1;
+        }
+
+        private bool IsVisited(Dictionary<int, HashSet<int>> visited, int i, int j)
+        {
+            return visited.ContainsKey(i) && visited[i].Contains(j);
+        }
+
+        private void AddVisited(Dictionary<int, HashSet<int>> visited, int i, int j)
+        {
+            if(!visited.ContainsKey(i))
+                visited.Add(i, new HashSet<int>());
+
+            visited[i].Add(j);
         }
     }
 }
