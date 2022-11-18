@@ -1,32 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LeetCode.String.Medium.WordBreak
 {
+    //https://leetcode.com/problems/word-break/description/
     public class Solution
     {
         public bool WordBreak(string s, IList<string> wordDict)
         {
-            var wordDictSet = new HashSet<string>(wordDict);
-            Span<bool> dp = stackalloc bool[s.Length + 1];
-            dp[0] = true;
+            return Break(s, new HashSet<string>(wordDict), 0, new bool?[s.Length]);
+        }
 
-            for (int i = 1; i <= s.Length; i++)
+        private bool Break(string s, HashSet<string> hash, int start, bool?[] seen)
+        {
+            if (start >= s.Length) return true;
+            if (seen[start] != null) return seen[start].Value;
+
+            for (int i = start + 1; i <= s.Length; i++)
             {
-                for (int j = 0; j < i; j++)
+                if (hash.Contains(s.Substring(start, i - start)))
                 {
-                    if (dp[j] && wordDictSet.Contains(s.Substring(j, i - j)))
+                    var result = Break(s, hash, i, seen);
+                    if (result) 
                     {
-                        dp[i] = true;
-                        break;
+                        seen[start] = result;
+                        return seen[start].Value;
                     }
                 }
             }
 
-            return dp[s.Length];
+            seen[start] = false;
+            return seen[start].Value;
         }
     }
 }

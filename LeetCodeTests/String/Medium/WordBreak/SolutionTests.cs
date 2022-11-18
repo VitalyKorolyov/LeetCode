@@ -1,5 +1,4 @@
 ﻿using LeetCode.String.Medium.WordBreak;
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -12,16 +11,14 @@ namespace LeetCodeTests.String.Medium.WordBreak
         {
             // Arrange
             var solution = new Solution();
-            string s = "aaaaaaa";
-            var wordDict = new List<string> { "aaaa", "aaa" };
+            string s = "leetcode";
+            var wordDict = new List<string> { "leet", "code" };
 
             // Act
-            var result = solution.WordBreak(
-                s,
-                wordDict);
+            var result = solution.WordBreak(s, wordDict);
 
             // Assert
-            Assert.True(true);
+            Assert.True(result);
         }
     }
 }
