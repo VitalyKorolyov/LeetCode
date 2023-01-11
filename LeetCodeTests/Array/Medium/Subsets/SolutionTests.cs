@@ -11,7 +11,7 @@ namespace LeetCodeTests.Array.Medium.Subsets
         {
             // Arrange
             var solution = new Solution();
-            int[] nums = new int[] { 1, 5, 3 };
+            int[] nums = new int[] { 1, 2, 3 };
 
             // Act
             var result = solution.Subsets(nums);
