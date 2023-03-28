@@ -1,75 +1,57 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCode.String.Hard.TextJustification
-{
-    //https://leetcode.com/problems/text-justification/description/
-    public class Solution
-    {
-        public IList<string> FullJustify(string[] words, int maxWidth)
-        {
-            int left = 0; 
-            List<string> result = new();
+namespace LeetCode.String.Hard.TextJustification;
 
-            while (left < words.Length)
+//https://leetcode.com/problems/text-justification/description/
+public class Solution
+{
+    public IList<string> FullJustify(string[] words, int maxWidth)
+    {
+        var width = 0;
+        List<string> lines = new();
+        List<string> line = new();
+
+        foreach (var word in words)
+        {
+            if (word.Length + width + line.Count <= maxWidth)
             {
-                int right = FindRight(left, words, maxWidth);
-                result.Add(Justify(left, right, words, maxWidth));
-                left = right + 1;
+                width += word.Length;
+                line.Add(word);
+                continue;
             }
 
-            return result;
+            if (line.Count == 1)
+                lines.Add($"{line[0]}{new string(' ', maxWidth - width)}");
+            else
+            {
+                var commonSpaces = System.Math.DivRem(maxWidth - width, line.Count - 1, out int extraSpaces);
+
+                StringBuilder strBuilder = new(maxWidth);
+                for (var i = 0; i < line.Count; i++)
+                {
+                    strBuilder.Append(line[i]);
+                    if (i >= line.Count - 1) continue;
+
+                    strBuilder.Append(new string(' ', commonSpaces));
+                    if (extraSpaces <= 0) continue;
+
+                    strBuilder.Append(' ');
+                    extraSpaces--;
+                }
+
+                lines.Add(strBuilder.ToString());
+            }
+
+            line = new List<string> { word };
+            width = word.Length;
         }
 
-        private int FindRight(int left, string[] words, int maxWidth)
-        {
-            int right = left;
-            int sum = words[right++].Length;
+        StringBuilder lastLine = new(maxWidth);
+        lastLine.Append(string.Join(" ", line));
+        lastLine.Append(new string(' ', maxWidth - lastLine.Length));
+        lines.Add(lastLine.ToString());
 
-            while (right < words.Length && (sum + 1 + words[right].Length) <= maxWidth)
-                sum += 1 + words[right++].Length;
-
-            return right - 1;
-        }
-
-        private string Justify(int left, int right, string[] words, int maxWidth)
-        {
-            if (right - left == 0) return PadResult(words[left], maxWidth);
-
-            bool isLastLine = right == words.Length - 1;
-            int numSpaces = right - left;
-            int totalSpace = maxWidth - WordsLength(left, right, words);
-
-            string space = isLastLine ? " " : Blank(totalSpace / numSpaces);
-            int remainder = isLastLine ? 0 : totalSpace % numSpaces;
-
-            StringBuilder result = new StringBuilder();
-            for (int i = left; i <= right; i++)
-                result.Append(words[i])
-                    .Append(space)
-                    .Append(remainder-- > 0 ? " " : "");
-
-            return PadResult(result.ToString().Trim(), maxWidth);
-        }
-
-        private int WordsLength(int left, int right, string[] words)
-        {
-            int wordsLength = 0;
-
-            for (int i = left; i <= right; i++) 
-                wordsLength += words[i].Length;
-
-            return wordsLength;
-        }
-
-        private string PadResult(string result, int maxWidth)
-        {
-            return result + Blank(maxWidth - result.Length);
-        }
-
-        private string Blank(int length)
-        {
-            return new string(new char[length]).Replace('\0', ' ');
-        }
+        return lines;
     }
 }
