@@ -1,41 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace LeetCode.BST.Easy.ClosestBinarySearchTreeValue;
 
-namespace LeetCode.BST.Easy.ClosestBinarySearchTreeValue
+//https://leetcode.com/problems/closest-binary-search-tree-value/
+public class TreeNode
 {
-    //https://leetcode.com/problems/closest-binary-search-tree-value/
-    public class TreeNode
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
     {
-        public int val;
-        public TreeNode left;
-        public TreeNode right;
-        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-        {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
+}
 
-    public class Solution
+public class Solution
+{
+    public int ClosestValue(TreeNode root, double target)
     {
-        public int ClosestValue(TreeNode root, double target)
+        int closest = root == null ? -1 : root.val;
+        double diff = double.MaxValue;
+
+        while (root != null)
         {
-            int closest = root.val;
-
-            while (root != null)
+            double currentDiff = System.Math.Abs(root.val - target);
+            if (currentDiff <= diff)
             {
-                closest = System.Math.Abs(root.val - target) < System.Math.Abs(closest - target) 
-                    ? root.val
-                    : closest;
-
-                root = target < root.val ? root.left : root.right;
+                diff = currentDiff;
+                closest = root.val;
             }
 
-            return closest;
+            root = root.val > target ? root.left : root.right;
         }
+
+        return closest;
     }
 }
