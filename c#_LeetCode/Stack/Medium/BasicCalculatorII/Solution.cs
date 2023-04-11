@@ -1,70 +1,54 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace LeetCode.Stack.Medium.BasicCalculatorII
+namespace LeetCode.Stack.Medium.BasicCalculatorII;
+
+//https://leetcode.com/problems/basic-calculator-ii/
+public class Solution
 {
-    //https://leetcode.com/problems/basic-calculator-ii/
-    public class Solution
+    public int Calculate(string s)
     {
-        public int Calculate(string s)
-        {
-            Queue<char> queue = new(s.Length);
-            foreach(char c in s)
-            {
-                if (c == ' ') continue;
-                queue.Enqueue(c);
-            }
+        Queue<char> queue = new(s.Length);
 
-            return Calc(queue);
+        foreach (char c in s.Where(x => x != ' '))
+            queue.Enqueue(c);
+
+        queue.Enqueue('+');
+        return Calculate(queue);
+    }
+
+    private int Calculate(Queue<char> queue)
+    {
+        Stack<int> numbers = new();
+        char preOp = '+';
+        int num = 0;
+
+        while (queue.Count > 0)
+        {
+            var item = queue.Dequeue();
+
+            if (char.IsDigit(item))
+                num = num * 10 + item - '0';
+            else
+            {
+                if (preOp == '+')
+                    numbers.Push(num);
+                if (preOp == '-')
+                    numbers.Push(-num);
+                if (preOp == '*')
+                    numbers.Push(numbers.Pop() * num);
+                if (preOp == '/')
+                    numbers.Push(numbers.Pop() / num);
+
+                num = 0;
+                preOp = item;
+            }
         }
 
-        private int Calc(Queue<char> queue)
-        {
-            Stack<int> stack = new();
+        int res = 0;
+        while (numbers.Count > 0)
+            res += numbers.Pop();
 
-            while(queue.Count > 0)
-            {
-                var item = queue.Peek();
-                if(char.IsDigit(item))
-                {
-                    var number = GetNumber(queue);
-                    stack.Push(number);
-                    continue;
-                }
-
-                queue.Dequeue();
-
-                if (item == '-' || item == '+')
-                {
-                    var number = GetNumber(queue);
-                    stack.Push(item == '-' ? -number : number);
-                }
-
-                if(item == '*' || item == '/')
-                {
-                    var first = stack.Pop();
-                    var second = GetNumber(queue);
-                    stack.Push(item == '*' ? first * second : first / second);
-                }
-            }
-
-            int res = 0;
-            while(stack.Count > 0)
-                res += stack.Pop();
-
-            return res;
-        }
-
-        private int GetNumber(Queue<char> queue)
-        {
-            var number = 0;
-            while(queue.Count > 0)
-            {
-                if (char.IsDigit(queue.Peek()))
-                    number = 10 * number + queue.Dequeue() - '0';
-                else break;
-            }
-
-            return number;
-        }
+        return res;
     }
 }

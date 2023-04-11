@@ -10,7 +10,7 @@ namespace LeetCodeTests.Stack.Medium.BasicCalculatorII
         {
             // Arrange
             var solution = new Solution();
-            string s = " 3+5 / 2 ";
+            string s = " -3+5 / 2 ";
 
             // Act
             var result = solution.Calculate(
