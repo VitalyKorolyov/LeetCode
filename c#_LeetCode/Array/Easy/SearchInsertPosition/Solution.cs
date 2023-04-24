@@ -1,31 +1,23 @@
-﻿namespace LeetCode.Array.Easy.SearchInsertPosition
+﻿namespace LeetCode.Array.Easy.SearchInsertPosition;
+
+//https://leetcode.com/problems/search-insert-position/
+public class Solution
 {
-    //https://leetcode.com/problems/search-insert-position/
-    public class Solution
+    public static int SearchInsert(int[] nums, int target)
     {
-        public static int SearchInsert(int[] nums, int target)
+        int left = 0;
+        int right = nums.Length;
+
+        while (left < right)
         {
-            int l = 0, r = nums.Length - 1, middle = 0;
+            int mid = left + (right - left) / 2;
 
-            while (r >= l)
-            {
-                middle = l + (r - l) / 2;
-
-                if (nums[middle] == target) return middle;
-
-                if (nums[middle] < target)
-                {
-                    l = middle + 1;
-                }
-                else
-                {
-                    r = middle - 1;
-                }
-            }
-
-            var resIndex = nums[middle] < target ? middle + 1 : middle;
-
-            return resIndex;
+            if (nums[mid] >= target)
+                right = mid;
+            else
+                left = mid + 1;
         }
+
+        return left;
     }
 }
