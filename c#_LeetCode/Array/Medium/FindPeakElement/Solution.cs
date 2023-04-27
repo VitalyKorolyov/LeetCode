@@ -1,17 +1,23 @@
-﻿namespace LeetCode.Array.Medium.FindPeakElement
+﻿namespace LeetCode.Array.Medium.FindPeakElement;
+
+//https://leetcode.com/problems/find-peak-element/
+public class Solution
 {
-    //https://leetcode.com/problems/find-peak-element/
-    public class Solution
+    public static int FindPeakElement(int[] nums)
     {
-        public static int FindPeakElement(int[] nums)
+        int left = 0;
+        int right = nums.Length - 1;
+
+        while(left < right)
         {
-            var indexResult = 0;
+            int mid = left + (right - left) / 2;
 
-            for (var i = 1; i < nums.Length; i++)
-                if (nums[i] > nums[indexResult])
-                    indexResult = i;
-
-            return indexResult;
+            if (nums[mid] > nums[mid + 1])
+                right = mid;
+            else
+                left = mid + 1;
         }
+
+        return left;
     }
 }
