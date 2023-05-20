@@ -1,32 +1,23 @@
-﻿namespace LeetCode.Array.Easy.MergeSortedArray
+﻿namespace LeetCode.Array.Easy.MergeSortedArray;
+
+//https://leetcode.com/problems/merge-sorted-array/
+public class Solution
 {
-    //https://leetcode.com/problems/merge-sorted-array/
-    public class Solution
+    public void Merge(int[] nums1, int m, int[] nums2, int n)
     {
-        public void Merge(int[] nums1, int m, int[] nums2, int n)
+        int indexToInsert = n + m - 1;
+
+        while(n > 0)
         {
-            int nums1Index = m - 1;
-            int nums2Index = n - 1;
-            int i = n + m - 1;
-
-            for (; i >= 0 && nums1Index >= 0 && nums2Index >= 0; i--)
+            if (m > 0 && nums1[m - 1] > nums2[n - 1])
             {
-                if(nums1[nums1Index] > nums2[nums2Index])
-                    nums1[i] = nums1[nums1Index--];
-                else
-                    nums1[i] = nums2[nums2Index--];
+                nums1[indexToInsert--] = nums1[m - 1];
+                m--;
             }
-
-            if (nums1Index >= 0)
+            else
             {
-                for (; i >= 0 && nums1Index >= 0; i--)
-                    nums1[i] = nums1[nums1Index--];
-            }
-
-            if(nums2Index >= 0)
-            {
-                for (; i >= 0 && nums2Index >= 0; i--)
-                    nums1[i] = nums2[nums2Index--];
+                nums1[indexToInsert--] = nums2[n - 1];
+                n--;
             }
         }
     }
