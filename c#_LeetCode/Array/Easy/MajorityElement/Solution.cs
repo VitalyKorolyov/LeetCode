@@ -1,27 +1,29 @@
-﻿namespace LeetCode.Array.Easy.MajorityElement
-{
-    //https://leetcode.com/problems/majority-element/
-    public class Solution
-    {
-        public static int MajorityElement(int[] nums)
-        {
-            var candidate = -1;
-            var count = 0;
+﻿namespace LeetCode.Array.Easy.MajorityElement;
 
-            for (var i = 0; i < nums.Length; i++)
+//https://leetcode.com/problems/majority-element/
+public class Solution
+{
+    public int MajorityElement(int[] nums)
+    {
+        int majorityElement = nums[0];
+        int count = 1;
+
+        for (int i = 1; i < nums.Length; i++)
+        {
+            if (nums[i] != majorityElement)
             {
+                count--;
                 if (count == 0)
                 {
-                    candidate = nums[i];
-                    count++;
-                }
-                else
-                {
-                    count += nums[i] == candidate ? 1 : -1;
+                    majorityElement = nums[i];
+                    count = 1;
                 }
             }
-
-            return candidate;
+            else
+                count++;
         }
+
+
+        return majorityElement;
     }
 }
