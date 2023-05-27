@@ -1,51 +1,41 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.Array.Medium._3Sum
+namespace LeetCode.Array.Medium._3Sum;
+
+//https://leetcode.com/problems/3sum/
+public class Solution
 {
-    //https://leetcode.com/problems/3sum/
-    public class Solution
+    public IList<IList<int>> ThreeSum(int[] nums)
     {
-        public IList<IList<int>> ThreeSum(int[] nums)
+        System.Array.Sort(nums);
+
+        List<IList<int>> res = new();
+
+        for (int i = 0; i < nums.Length && nums[i] <= 0; ++i)
         {
-            var res = new List<IList<int>>();
-
-            if (nums == null || nums.Length < 3)
-                return res;
-
-            System.Array.Sort(nums);
-
-            for (int i = 0; i < nums.Length - 2; i++)
-            {
-                if (nums[i] > 0) break;
-                if (i > 0 && nums[i] == nums[i - 1]) continue;
-
-                SearchTriplets(i, i + 1, nums, res);
-            }
-
-            return res;
+            if (i == 0 || nums[i - 1] != nums[i])
+                Sum(nums, i, res);
         }
 
-        private void SearchTriplets(int left, int middle, int[] nums, List<IList<int>> res)
+        return res;
+    }
+
+    private void Sum(int[] nums, int i, List<IList<int>> result)
+    {
+        int left = i + 1, right = nums.Length - 1;
+
+        while (left < right)
         {
-            var right = nums.Length - 1;
+            int sum = nums[i] + nums[left] + nums[right];
 
-            while (middle < right)
+            if (sum < 0) ++left;
+            else if (sum > 0) --right;
+            else
             {
-                var currentSum = nums[right] + nums[left] + nums[middle];
+                result.Add(new List<int> { nums[i], nums[left++], nums[right--] });
 
-                if (currentSum == 0)
-                {
-                    res.Add(new List<int> { nums[right], nums[left], nums[middle] });
-                    middle++;
-                    right--;
-
-                    while (middle < right && nums[middle] == nums[middle - 1])
-                        middle++;
-                }
-                if (currentSum < 0)
-                    middle++;
-                if(currentSum > 0)
-                    right--;
+                while (left < right && nums[left] == nums[left - 1])
+                    ++left;
             }
         }
     }
