@@ -1,27 +1,23 @@
-﻿namespace LeetCode.Array.Medium.TwoSumIIInputArrayIsSorted
+﻿namespace LeetCode.Array.Medium.TwoSumIIInputArrayIsSorted;
+
+//https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+public class Solution
 {
-    //https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-    public class Solution
+    public int[] TwoSum(int[] numbers, int target)
     {
-        public int[] TwoSum(int[] numbers, int target)
+        int i = 0;
+        int j = numbers.Length - 1;
+
+        while (i < j)
         {
-            int[] result = new int[2];
+            int currentSum = numbers[i] + numbers[j];
 
-            for (int i = 0, j = numbers.Length - 1; j > i;)
-            {
-                var sum = numbers[i] + numbers[j];
+            if (currentSum == target) return new int[] { i + 1, j + 1 };
 
-                if (sum == target)
-                {
-                    result[0] = i + 1;
-                    result[1] = j + 1;
-                    break;
-                }
-                if (sum > target) j--;
-                else i++;
-            }
-
-            return result;
+            if(currentSum > target) j--;
+            else i++;
         }
+
+        return new int[] { };
     }
 }
