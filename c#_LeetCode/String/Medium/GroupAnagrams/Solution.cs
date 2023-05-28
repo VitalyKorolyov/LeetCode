@@ -1,35 +1,43 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
-namespace LeetCode.String.Medium.GroupAnagrams
+namespace LeetCode.String.Medium.GroupAnagrams;
+
+//https://leetcode.com/problems/group-anagrams/
+public class Solution
 {
-    //https://leetcode.com/problems/group-anagrams/
-    public class Solution
+    public IList<IList<string>> GroupAnagrams(string[] strs)
     {
-        public IList<IList<string>> GroupAnagrams(string[] strs)
+        Dictionary<string, IList<string>> anagrams = new();
+
+        for(int i = 0; i < strs.Length; i++)
         {
-            var res = new List<IList<string>>();
+            string str = strs[i];
 
-            if (strs == null || strs.Length == 0)
-                return res;
+            int[] count = new int[26];
+            for (int j = 0; j < str.Length; j++)
+                count[str[j] - 'a']++;
 
-            var dict = new Dictionary<string, List<string>>();
-
-            foreach (var str in strs)
+            StringBuilder key = new(str.Length);
+            for(int k = 0; k < count.Length; k++)
             {
-                var cur = new string(str.OrderBy(x => x).ToArray());
-
-                if (!dict.ContainsKey(cur))
-                    dict.Add(cur, new List<string>());
-
-                dict[cur].Add(str);
+                while (count[k] > 0)
+                {
+                    key.Append((char)('a' + k));
+                    count[k]--;
+                }
             }
 
-            foreach (var item in dict.Values)
-                res.Add(item);
-
-            return res;
+            string strKey = key.ToString();
+            if (!anagrams.ContainsKey(strKey))
+                anagrams[strKey] = new List<string>() { str };
+            else 
+                anagrams[strKey].Add(str);
         }
+
+        var result = new List<IList<string>>();
+        result.AddRange(anagrams.Values);
+
+        return result;
     }
 }

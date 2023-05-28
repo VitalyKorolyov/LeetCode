@@ -1,24 +1,21 @@
 ﻿using LeetCode.String.Medium.GroupAnagrams;
-using System;
 using Xunit;
 
-namespace LeetCodeTests.String.Medium.GroupAnagrams
+namespace LeetCodeTests.String.Medium.GroupAnagrams;
+
+public class SolutionTests
 {
-    public class SolutionTests
+    [Fact]
+    public void GroupAnagrams_StateUnderTest_ExpectedBehavior()
     {
-        [Fact]
-        public void GroupAnagrams_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var solution = new Solution();
-            string[] strs = {"ddddddddddg","dgggggggggg"};
+        // Arrange
+        var solution = new Solution();
+        string[] strs = { "eat", "tea", "tan", "ate", "nat", "bat" };
 
-            // Act
-            var result = solution.GroupAnagrams(
-                strs);
+        // Act
+        var result = solution.GroupAnagrams(strs);
 
-            // Assert
-            Assert.True(true);
-        }
+        // Assert
+        Assert.True(true);
     }
 }
