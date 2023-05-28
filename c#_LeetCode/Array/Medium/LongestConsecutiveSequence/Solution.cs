@@ -1,49 +1,31 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.Array.Medium.LongestConsecutiveSequence
+namespace LeetCode.Array.Medium.LongestConsecutiveSequence;
+
+//https://leetcode.com/problems/longest-consecutive-sequence/
+public class Solution
 {
-    //https://leetcode.com/problems/longest-consecutive-sequence/
-    public class Solution
+    public int LongestConsecutive(int[] nums)
     {
-        public int LongestConsecutive(int[] nums)
+        HashSet<int> hash = new(nums);
+
+        int longest = 0;
+
+        for(int i = 0; i < nums.Length; i++)
         {
-            HashSet<int> hash = new(nums.Length);
-            HashSet<int> visited = new(nums.Length);
+            int number = nums[i];
 
-            for (int i = 0; i < nums.Length; i++)
-                hash.Add(nums[i]);
-
-            var longest = 0;
-            for (int i = 0; i < nums.Length; i++)
+            if (!hash.Contains(number - 1))
             {
-                if (!visited.Contains(nums[i]))
-                {
-                    visited.Add(nums[i]);
+                int currentLength = 1;
 
-                    var value = nums[i];
-                    var current = 1;
+                while (hash.Contains(++number))
+                    currentLength++;
 
-                    while (hash.Contains(value - 1))
-                    {
-                        value--;
-                        current++;
-                        visited.Add(value);
-                    }
-
-                    value = nums[i];
-
-                    while (hash.Contains(value + 1))
-                    {
-                        value++;
-                        current++;
-                        visited.Add(value);
-                    }
-
-                    longest = System.Math.Max(current, longest);
-                }
+                longest = System.Math.Max(longest, currentLength);
             }
-
-            return longest;
         }
+
+        return longest;
     }
 }
