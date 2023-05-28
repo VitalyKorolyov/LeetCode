@@ -1,39 +1,35 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace LeetCode.HashTable.Easy.WordPattern
+namespace LeetCode.HashTable.Easy.WordPattern;
+
+//https://leetcode.com/problems/word-pattern/
+public class Solution
 {
-    //https://leetcode.com/problems/word-pattern/
-    public class Solution
+    public bool WordPattern(string pattern, string s)
     {
-        public bool WordPattern(string pattern, string s)
+        Dictionary<char, string> letterToWord = new();
+        HashSet<string> used = new();
+
+        string[] allWords = s.Split(' ').ToArray();
+
+        if(allWords.Length != pattern.Length) return false;
+
+        foreach ((string word, char letter) in allWords.Zip(pattern))
         {
-            Dictionary<char, string> mapChar = new();
-            Dictionary<string, char> mapWord = new();
-            var words = s.Split(" ");
+            if(!letterToWord.ContainsKey(letter) && used.Contains(word)) return false;
 
-            if (words.Length != pattern.Length) return false;
-
-            for (int i = 0; i < words.Length; i++)
+            if (letterToWord.ContainsKey(letter))
             {
-                if (!mapChar.ContainsKey(pattern[i]))
-                {
-                    if (mapWord.ContainsKey(words[i]))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        mapChar.Add(pattern[i], words[i]);
-                        mapWord.Add(words[i], pattern[i]);
-                    }
-                }
-                else
-                {
-                    if (mapChar[pattern[i]] != words[i]) return false;
-                }
+                if (letterToWord[letter] != word) return false;
             }
-
-            return true;
+            else
+            {
+                letterToWord.Add(letter, word);
+                used.Add(word);
+            }
         }
+
+        return true;
     }
 }
