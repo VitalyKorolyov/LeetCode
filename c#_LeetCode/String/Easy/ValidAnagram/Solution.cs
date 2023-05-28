@@ -1,39 +1,21 @@
-﻿using System.Collections.Generic;
+﻿namespace LeetCode.String.Easy.ValidAnagram;
 
-namespace LeetCode.String.Easy.ValidAnagram
+//https://leetcode.com/problems/valid-anagram/
+public class Solution
 {
-    //https://leetcode.com/problems/valid-anagram/
-    public class Solution
+    public bool IsAnagram(string s, string t)
     {
-        public bool IsAnagram(string s, string t)
-        {
-            if (s.Length != t.Length) return false;
+        int[] letterCount = new int[26];
 
-            var hash = new Dictionary<char, int>();
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (!hash.ContainsKey(s[i]))
-                {
-                    hash.Add(s[i], 1);
-                }
-                else
-                {
-                    hash[s[i]]++;
-                }
-            }
+        for (int i = 0; i < t.Length; i++)
+            letterCount[t[i] - 'a']++;
 
-            for (int i = 0; i < t.Length; i++)
-            {
-                if (!hash.ContainsKey(t[i])) return false;
-                hash[t[i]]--;
-            }
+        for (int i = 0;i < s.Length; i++)
+            letterCount[s[i] - 'a']--;
 
-            foreach (var key in hash.Keys)
-            {
-                if (hash[key] != 0) return false;
-            }
+        for (int i = 0; i < letterCount.Length; i++)
+            if (letterCount[i] != 0) return false;
 
-            return true;
-        }
+        return true;
     }
 }
