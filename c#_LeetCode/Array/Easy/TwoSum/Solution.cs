@@ -1,28 +1,23 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.Array.Easy.TwoSum
+namespace LeetCode.Array.Easy.TwoSum;
+
+//https://leetcode.com/problems/two-sum/
+public class Solution
 {
-    //https://leetcode.com/problems/two-sum/
-    public class Solution
+    public int[] TwoSum(int[] nums, int target)
     {
-        public int[] TwoSum(int[] nums, int target)
+        Dictionary<int, int> numberToIndex = new();
+
+        for (int i = 0; i < nums.Length; i++)
         {
-            var hash = new Dictionary<int, int>();
+            int secondElement = target - nums[i];
 
-            for (int i = 0; i < nums.Length; i++)
-            {
-                var diff = target - nums[i];
-
-                if (hash.ContainsKey(diff))
-                    return new int[] { hash[diff], i };
-                else
-                {
-                    if(!hash.ContainsKey(nums[i]))
-                        hash.Add(nums[i], i);
-                }
-            }
-
-            return null;
+            if(numberToIndex.ContainsKey(secondElement))
+                return new int[] { numberToIndex[secondElement], i };
+            else numberToIndex[nums[i]] = i;
         }
+
+        return null;
     }
 }
