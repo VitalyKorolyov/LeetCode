@@ -1,24 +1,27 @@
 ﻿using LeetCode.Array.Medium.MergeIntervals;
-using System;
 using Xunit;
 
-namespace LeetCodeTests.Array.Medium.MergeIntervals
+namespace LeetCodeTests.Array.Medium.MergeIntervals;
+
+public class SolutionTests
 {
-    public class SolutionTests
+    [Fact]
+    public void Merge_StateUnderTest_ExpectedBehavior()
     {
-        [Fact]
-        public void Merge_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var solution = new Solution();
-            int[][] intervals = new[] {new int[] {1, 4}, new int[] {0, 1} };
+        // Arrange
+        var solution = new Solution();
+        int[][] intervals = new[] 
+        { 
+            new int[] { 1, 3 }, 
+            new int[] { 2, 6 },
+            new int[] { 8, 10 },
+            new int[] { 15, 18 },
+        };
 
-            // Act
-            var result = solution.Merge(
-                intervals);
+        // Act
+        var result = solution.Merge(intervals);
 
-            // Assert
-            Assert.True(true);
-        }
+        // Assert
+        Assert.True(true);
     }
 }

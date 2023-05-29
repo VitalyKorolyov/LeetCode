@@ -1,46 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace LeetCode.Array.Medium.MergeIntervals
+namespace LeetCode.Array.Medium.MergeIntervals;
+
+//https://leetcode.com/problems/merge-intervals/
+public class Solution
 {
-    //https://leetcode.com/problems/merge-intervals/
-    public class Solution
+    public int[][] Merge(int[][] intervals)
     {
-        public int[][] Merge(int[][] intervals)
+        System.Array.Sort(intervals, (a, b) => a[0].CompareTo(b[0]));
+
+        List<int[]> result = new();
+
+        int i = 0;
+        while(i < intervals.Length)
         {
-            System.Array.Sort(intervals, (i1, i2) => i1[0].CompareTo(i2[0]));
+            int j = i + 1;
+            int[] current = intervals[i].ToArray();
 
-            var merged = new List<int[]>();
-
-            for (var i = 0; i < intervals.Length; i++)
+            while(j < intervals.Length && IsOverlapping(current, intervals[j]))
             {
-                var nextI = i;
-                var merge = new[] { intervals[i][0], intervals[i][1] };
+                current[0] = System.Math.Min(intervals[j][0], current[0]);
+                current[1] = System.Math.Max(intervals[j][1], current[1]);
 
-                for (var j = i + 1; j < intervals.Length; j++)
-                {
-                    if (IsInside(merge, intervals[j]))
-                    {
-                        merge[1] = merge[1] > intervals[j][1] ? merge[1] : intervals[j][1];
-
-                        nextI = j;
-                        continue;
-                    }
-
-                    break;
-                }
-
-                merged.Add(merge);
-
-                i = nextI;
+                j++;
             }
 
-            return merged.ToArray();
+            result.Add(current);
+            i = j;
         }
 
-        private bool IsInside(int[] first, int[] second)
-        {
-            return first[0] <= second[0] && second[0] <= first[1];
-        }
+        return result.ToArray();
+    }
+
+    private bool IsOverlapping(int[] first, int[] second)
+    {
+        return first[1] >= second[0];
     }
 }
