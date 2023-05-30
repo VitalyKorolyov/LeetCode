@@ -1,38 +1,33 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.String.Easy.ValidParentheses
+namespace LeetCode.String.Easy.ValidParentheses;
+
+//https://leetcode.com/problems/valid-parentheses/
+public class Solution
 {
-    //https://leetcode.com/problems/valid-parentheses/
-    public class Solution
+    private readonly Dictionary<char, char> hashMap = new()
     {
-        private Dictionary<char, char> pairs = new Dictionary<char, char>()
-        {
-            {')', '('},
-            {'}', '{'},
-            {']', '['}
-        };
+        {')', '('},
+        {']', '['},
+        {'}', '{'}
+    };
 
-        public bool IsValidStack(string s)
-        {
-            var stack = new Stack<char>();
+    public bool IsValid(string s)
+    {
+        Stack<char> stack = new();
 
-            for (int i = 0; i < s.Length; i++)
+        for(int i = 0; i < s.Length; i++)
+        {
+            if (hashMap.ContainsKey(s[i]))
             {
-                var @char = s[i];
+                if (stack.Count == 0) return false;
 
-                if (pairs.ContainsKey(@char))
-                {
-                    var top = stack.Count > 0 ? stack.Pop() : '#';
-
-                    if (top != pairs[@char]) return false;
-                }
-                else
-                {
-                    stack.Push(s[i]);
-                }
+                if(hashMap.ContainsKey(s[i]) && hashMap[s[i]] != stack.Pop()) 
+                    return false;
             }
-
-            return stack.Count == 0;
+            else stack.Push(s[i]);
         }
+
+        return stack.Count == 0;
     }
 }
