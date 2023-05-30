@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace LeetCode.Array.Medium.KthLargestElementInAnArray
+namespace LeetCode.Array.Medium.KthLargestElementInAnArray;
+
+//https://leetcode.com/problems/kth-largest-element-in-an-array/
+public class Solution
 {
-    //https://leetcode.com/problems/kth-largest-element-in-an-array/
-    public class Solution
+    public int FindKthLargest(int[] nums, int k)
     {
-        public int FindKthLargest(int[] nums, int k)
+        PriorityQueue<int, int> priorityQueue = new();
+
+        for (int i = 0; i < nums.Length; i++)
         {
-            var queue = new PriorityQueue<int, int>(new Comp());
+            priorityQueue.Enqueue(nums[i], nums[i]);
 
-            foreach (var item in nums)
-            {
-                queue.Enqueue(item, item);
-
-                if (queue.Count > k)
-                    queue.Dequeue();
-            }
-
-            return queue.Dequeue();  
+            if (priorityQueue.Count > k)
+                priorityQueue.Dequeue();
         }
 
-        public class Comp : IComparer<int>
-        {
-            public int Compare(int x, int y)
-            {
-                return x - y;
-            }
-        }
+        return priorityQueue.Dequeue();
     }
 }
