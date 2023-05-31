@@ -1,22 +1,20 @@
 ﻿using LeetCode.LinkedList.Easy.ReverseLinkedList;
-using System;
 using Xunit;
 
-namespace LeetCodeTests.LinkedList.Easy.ReverseLinkedList
+namespace LeetCodeTests.LinkedList.Easy.ReverseLinkedList;
+
+public class ListNodeTests
 {
-    public class ListNodeTests
+    [Fact]
+    public void TestMethod1()
     {
-        [Fact]
-        public void TestMethod1()
-        {
-            // Arrange
-            var listNode = new ListNode(1, new ListNode(2, new ListNode(3)));
+        // Arrange
+        var listNode = new ListNode(1, new ListNode(2, new ListNode(3)));
 
-            // Act
-            var result = Solution.ReverseList(listNode);
+        // Act
+        var result = new Solution().ReverseList(listNode);
 
-            // Assert
-            Assert.Equal(3, result.val);
-        }
+        // Assert
+        Assert.Equal(3, result.val);
     }
 }
