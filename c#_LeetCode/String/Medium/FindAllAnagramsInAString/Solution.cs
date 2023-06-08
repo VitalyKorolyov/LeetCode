@@ -1,46 +1,40 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.String.Medium.FindAllAnagramsInAString
+namespace LeetCode.String.Medium.FindAllAnagramsInAString;
+
+//https://leetcode.com/problems/find-all-anagrams-in-a-string/
+public class Solution
 {
-    //https://leetcode.com/problems/find-all-anagrams-in-a-string/
-    public class Solution
+    public IList<int> FindAnagrams(string s, string p)
     {
-        public IList<int> FindAnagrams(string s, string p)
+        List<int> result = new();
+        int[] countP = new int[26];
+
+        for (int i = 0; i < p.Length; i++)
+            countP[p[i] - 'a']++;
+
+        int[] countS = new int[26];
+        for (int i = 0, j = 0; i < s.Length; i++)
         {
-            var freqS = new int[26];
-            var freqP = new int[26];
-            var result = new List<int>();
+            countS[s[i] - 'a']++;
 
-            for (int i = 0; i < p.Length; i++)
-                freqP[p[i] - 'a']++;
-
-            int start = 0;
-            for (int end = 0; end < s.Length; end++)
+            if(i >= p.Length - 1)
             {
-                if(end >= p.Length)
-                {
-                    if (IsAnagram(freqS, freqP))
-                        result.Add(start);
+                if(IsEqual(countS, countP))
+                    result.Add(j);
 
-                    freqS[s[start] - 'a']--;
-                    start++;
-                }
-
-                freqS[s[end] - 'a']++;
+                countS[s[j++] - 'a']--;
             }
-
-            if (IsAnagram(freqS, freqP))
-                result.Add(start);
-
-            return result;
         }
 
-        private bool IsAnagram(int[] freqS, int[] freqP)
-        {
-            for (int i = 0; i < freqP.Length; i++)
-                if (freqP[i] != freqS[i]) return false;
+        return result;
+    }
 
-            return true;
-        }
+    private bool IsEqual(int[] s, int[] p)
+    {
+        for (int i = 0; i < s.Length; i++) 
+            if (s[i] != p[i]) return false;
+
+        return true;
     }
 }
