@@ -1,26 +1,37 @@
-﻿namespace LeetCode.DynamicProgramming.Hard.BestTimeToBuyAndSellStockIII
+﻿namespace LeetCode.DynamicProgramming.Hard.BestTimeToBuyAndSellStockIII;
+
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+public class Solution
 {
-    //https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
-    public class Solution
+    public int MaxProfit(int[] prices)
     {
-        public int MaxProfit(int[] prices)
+        if(prices == null || prices.Length <= 1) return 0;
+
+        int[] leftProfit = new int[prices.Length];
+        int[] rightProfit = new int[prices.Length + 1];
+
+        int maxProfit = 0;
+        int minPrice = prices[0];
+        for(int i = 1; i < prices.Length; i++)
         {
-            if(prices == null || prices.Length < 1) return 0;
-
-            var oneBuyOneSell = 0;
-            var twoBuyTwoSell = 0;
-            var oneBuy = int.MaxValue;
-            var twoBuy = int.MaxValue;
-
-            for (var i = 0; i < prices.Length; i++)
-            {
-                oneBuy = System.Math.Min(oneBuy, prices[i]);
-                oneBuyOneSell = System.Math.Max(oneBuyOneSell, prices[i] - oneBuy);
-                twoBuy = System.Math.Min(twoBuy, prices[i] - oneBuyOneSell);
-                twoBuyTwoSell = System.Math.Max(twoBuyTwoSell, prices[i] - twoBuy);
-            }
-
-            return twoBuyTwoSell;
+            maxProfit = System.Math.Max(maxProfit, prices[i] - minPrice);
+            minPrice = System.Math.Min(minPrice, prices[i]);
+            leftProfit[i] = maxProfit;
         }
+
+        maxProfit = 0;
+        int maxPrice = prices[prices.Length - 1];
+        for (int i = prices.Length - 2; i >= 0; i--)
+        {
+            maxProfit = System.Math.Max(maxProfit, maxPrice - prices[i]);
+            maxPrice = System.Math.Max(maxPrice, prices[i]);
+            rightProfit[i] = maxProfit;
+        }
+
+        maxProfit = 0;
+        for (int i = 0; i < prices.Length; i++)
+            maxProfit = System.Math.Max(maxProfit, rightProfit[i + 1] + leftProfit[i]);
+
+        return maxProfit;
     }
 }
