@@ -1,24 +1,18 @@
-﻿using System.Collections.Generic;
+﻿namespace LeetCode.Stack.Easy.ReplaceElementsWithGreatestElementOnRightSide;
 
-namespace LeetCode.Stack.Easy.ReplaceElementsWithGreatestElementOnRightSide
+//https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/description/
+public class Solution
 {
-    //https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/description/
-    public class Solution
+    public int[] ReplaceElements(int[] arr)
     {
-        public int[] ReplaceElements(int[] arr)
+        for (int i = arr.Length - 1, max = -1; i >= 0; i--)
         {
-            var max = arr[arr.Length - 1];
-            arr[arr.Length - 1] = -1;
+            var current = arr[i];
+            arr[i] = max;
 
-            for (int i = arr.Length - 2; i >= 0; i--)
-            {
-                var current = arr[i];
-                arr[i] = max;
-
-                max = System.Math.Max(current, max);
-            }
-
-            return arr;
+            max = System.Math.Max(current, max);
         }
+
+        return arr;
     }
 }
