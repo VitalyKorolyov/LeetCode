@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode.Graph.Hard.WordLadder;
+namespace LeetCode.Array.Hard.WordLadder;
 
 //https://leetcode.com/problems/word-ladder/description/
 public class Solution
@@ -28,9 +28,10 @@ public class Solution
 
                 for (int j = 0; j < word.Length; j++)
                 {
+                    var arr = word.ToCharArray();
+
                     for (int k = 'a'; k <= 'z'; k++)
                     {
-                        var arr = word.ToCharArray();
                         arr[j] = (char)k;
 
                         string str = new(arr);
@@ -43,7 +44,7 @@ public class Solution
                 }
             }
 
-            ++changes;
+            changes++;
         }
 
         return 0;
