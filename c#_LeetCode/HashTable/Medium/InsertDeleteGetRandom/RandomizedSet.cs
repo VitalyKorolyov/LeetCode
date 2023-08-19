@@ -1,52 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LeetCode.HashTable.Medium.InsertDeleteGetRandom
+namespace LeetCode.HashTable.Medium.InsertDeleteGetRandom;
+
+//https://leetcode.com/problems/insert-delete-getrandom-o1/
+public class RandomizedSet
 {
-    //https://leetcode.com/problems/insert-delete-getrandom-o1/
-    public class RandomizedSet
+    private readonly Dictionary<int, int> hash = new();
+    private readonly List<int> list = new();
+    private readonly Random random = new();
+
+    public bool Insert(int val)
     {
-        private readonly Dictionary<int, int> _hash;
-        private readonly List<int> _list;
-        private readonly Random _random;
+        if (hash.ContainsKey(val)) return false;
 
-        public RandomizedSet()
-        {
-            _hash = new();
-            _list = new List<int>();
-            _random = new Random();
-        }
+        hash.Add(val, list.Count);
+        list.Add(val);
 
-        public bool Insert(int val)
-        {
-            if (_hash.ContainsKey(val)) return false;
+        return true;
+    }
 
-            _hash.Add(val, _list.Count);
-            _list.Add(val);
+    public bool Remove(int val)
+    {
+        if (!hash.ContainsKey(val)) return false;
 
-            return true;
-        }
+        var currentIndex = hash[val];
+        var lastIndex = list.Count - 1;
 
-        public bool Remove(int val)
-        {
-            if (!_hash.ContainsKey(val)) return false;
+        list[currentIndex] = list[lastIndex];
+        hash[list[currentIndex]] = currentIndex;
 
-            var currentIndex = _hash[val];
-            var lastIndex = _list.Count - 1;
+        list.RemoveAt(lastIndex);
+        hash.Remove(val);
 
-            _list[currentIndex] = _list[lastIndex];
-            _hash[_list[currentIndex]] = currentIndex;
+        return true;
+    }
 
-            _list.RemoveAt(lastIndex);
-            _hash.Remove(val);
-
-            return true;
-        }
-
-        public int GetRandom()
-        {
-            int index = _random.Next(0, _list.Count);
-            return _list[index];
-        }
+    public int GetRandom()
+    {
+        int index = random.Next(0, list.Count);
+        return list[index];
     }
 }
